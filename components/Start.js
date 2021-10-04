@@ -24,8 +24,8 @@ export default class Start extends React.Component {
               <Image source={require("../assets/icon.svg")} />
               <TextInput
                 style={styles.textInput}
-                onChangeText={(text) => this.setState({ text })}
-                value={this.state.text}
+                onChangeText={(username) => this.setState({ username })}
+                value={this.state.username}
                 placeholder='Your Name'
               />
               <Text>You wrote: {this.state.text}</Text>
