@@ -5,6 +5,10 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 
 export default class Start extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { username: '' };
+  }
 
   render() {
     return (
@@ -31,7 +35,24 @@ export default class Start extends React.Component {
             <View style={styles.colorChooser}>
               <Text style={styles.backgroundColorText}> Choose Background Color: </Text>
 
-
+              <View style={styles.selectBgColor}>
+                <TouchableOpacity
+                  style={styles.colorSelect1}
+                  onPress={() => this.setState({ backColor: '#090C08' })}
+                />
+                <TouchableOpacity
+                  style={styles.colorSelect2}
+                  onPress={() => this.setState({ backColor: '#474056' })}
+                />
+                <TouchableOpacity
+                  style={styles.colorSelect3}
+                  onPress={() => this.setState({ backColor: '#8A95A5' })}
+                />
+                <TouchableOpacity
+                  style={styles.colorSelect4}
+                  onPress={() => this.setState({ backColor: '#B9C6AE' })}
+                />
+              </View>
             </View>
 
             {/*button to go into chat room */}
@@ -64,6 +85,8 @@ const styles = StyleSheet.create({
     fontsize: 45,
     fontWeight: '600',
     textAlign: 'center',
+    justifyContent: 'space-evenly',
+    flex: 0.8,
     backgrounColor: '#000000c0'
   },
   textInputContainer: {
@@ -99,6 +122,34 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgrounColor: '#000000c0'
   },
+  colorSelect1: {
+    backgroundColor: '#090C08',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    margin: 5,
+  },
+  colorSelect2: {
+    backgroundColor: '#474056',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    margin: 5,
+  },
+  colorSelect3: {
+    backgroundColor: '#8A95A5',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    margin: 5,
+  },
+  colorSelect4: {
+    backgroundColor: '#B9C6AE',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    margin: 5,
+  },
   buttonContainer: {
     backgrounColor: '#757083'
   },
@@ -107,7 +158,7 @@ const styles = StyleSheet.create({
     fontsize: 16,
     fontWeight: '600',
     textAlign: 'center',
-
+    justifyContent: 'space-evenly',
   },
 
 });
