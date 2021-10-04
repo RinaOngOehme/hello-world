@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   buttonContainer: {
-    backgrounColor: '#757083'
+    backgroundColor: '#757083'
   },
   startChatStyle: {
     color: '#FFFFFF',
