@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   },
   appTitle: {
     color: '#FFFFFF',
-    fontsize: 45,
+    fontSize: 45,
     fontWeight: '600',
     textAlign: 'center',
     justifyContent: 'space-evenly',
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     color: '#757083',
-    fontsize: 16,
+    fontSize: 16,
     fontWeight: '200',
     opacity: '50',
     textAlign: 'left',
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   },
   colorChooser: {
     color: 'white',
-    fontsize: 42,
+    fontSize: 42,
     lineHeight: 84,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
   backgroundColorText: {
     color: '#757083',
-    fontsize: 16,
+    fontSize: 16,
     opacity: '100',
     fontWeight: '300',
     textAlign: 'center',
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   },
   startChatStyle: {
     color: '#FFFFFF',
-    fontsize: 16,
+    fontSize: 16,
     fontWeight: '600',
     textAlign: 'center',
     justifyContent: 'space-evenly',
