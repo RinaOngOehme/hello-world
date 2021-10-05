@@ -1,7 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, Button, ImageBackground } from 'react-native';
-
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { View, Text, StyleSheet, TextInput, Button, ImageBackground, TouchableOpacity } from 'react-native';
 
 
 export default class Start extends React.Component {
