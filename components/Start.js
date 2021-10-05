@@ -30,7 +30,7 @@ export default class Start extends React.Component {
             </View>
 
             {/*color selector for user background */}
-            <View style={styles.colorChooser}>
+            <View >
               <Text style={styles.backgroundColorText}> Choose Background Color: </Text>
 
               <View style={styles.selectBgColor}>
@@ -104,14 +104,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     backgroundColor: '#000000c0'
   },
-  colorChooser: {
-    color: 'white',
-    fontSize: 42,
-    lineHeight: 84,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    backgroundColor: '#000000c0'
-  },
+
   backgroundColorText: {
     color: '#757083',
     fontSize: 16,
