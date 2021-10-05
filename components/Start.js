@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     justifyContent: 'space-evenly',
     flex: 0.8,
-    backgrounColor: '#000000c0'
+    backgroundColor: '#000000c0'
   },
   textInputContainer: {
     flex: 50,
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     lineHeight: 84,
     fontWeight: 'bold',
     textAlign: 'center',
-    backgrounColor: '#000000c0'
+    backgroundColor: '#000000c0'
   },
   textInput: {
     color: '#757083',
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     fontWeight: '200',
     opacity: '50',
     textAlign: 'left',
-    backgrounColor: '#000000c0'
+    backgroundColor: '#000000c0'
   },
   colorChooser: {
     color: 'white',
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     lineHeight: 84,
     fontWeight: 'bold',
     textAlign: 'center',
-    backgrounColor: '#000000c0'
+    backgroundColor: '#000000c0'
   },
   backgroundColorText: {
     color: '#757083',
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     opacity: '100',
     fontWeight: '300',
     textAlign: 'center',
-    backgrounColor: '#000000c0'
+    backgroundColor: '#000000c0'
   },
   colorSelect1: {
     backgroundColor: '#090C08',
