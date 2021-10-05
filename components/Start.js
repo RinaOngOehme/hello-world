@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, TextInput, Button, ImageBackground } from 'react-native';
 
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -7,7 +7,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 export default class Start extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: '' };
+    this.state = { username: '', };
   }
 
   render() {
@@ -23,7 +23,7 @@ export default class Start extends React.Component {
             <View >
               <Image source={require("../assets/icon.svg")} />
               <TextInput
-                style={styles.textInput}
+                style={styles.textInputStyle}
                 onChangeText={(username) => this.setState({ username })}
                 value={this.state.username}
                 placeholder='Your Name'
@@ -92,17 +92,17 @@ const styles = StyleSheet.create({
   textInputContainer: {
     flex: 50,
     color: 'white',
-    bordercolor: '',
+    borderColor: '#8A95A5',
     lineHeight: 84,
     fontWeight: 'bold',
     textAlign: 'center',
     backgroundColor: '#000000c0'
   },
-  textInput: {
+  textInputStyle: {
     color: '#757083',
     fontSize: 16,
     fontWeight: '200',
-    opacity: '50',
+
     textAlign: 'left',
     backgroundColor: '#000000c0'
   },
@@ -117,11 +117,19 @@ const styles = StyleSheet.create({
   backgroundColorText: {
     color: '#757083',
     fontSize: 16,
-    opacity: '100',
+
     fontWeight: '300',
     textAlign: 'center',
     backgroundColor: '#000000c0'
   },
+  selectBgColor: {
+    backgroundColor: '#000000c0',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    margin: 5,
+  },
+
   colorSelect1: {
     backgroundColor: '#090C08',
     width: 50,
