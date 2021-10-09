@@ -36,6 +36,7 @@ export default class App extends React.Component {
           <Stack.Screen
             name="Chat"
             component={Chat}
+
           />
         </Stack.Navigator>
       </NavigationContainer>
