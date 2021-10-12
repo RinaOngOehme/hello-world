@@ -70,7 +70,7 @@ export default class Chat extends React.Component {
     return (
       //styles for chat container and include background color from the selected home start screen
       <View style={[styles.chatContainer, { backgroundColor: backColor }]}>
-        <Text style={styles.chatText}>Let's Chat!</Text>
+
         <GiftedChat
           renderBubble={this.renderBubble.bind(this)}
           messages={this.state.messages}
@@ -89,14 +89,8 @@ const styles = StyleSheet.create({
   chatContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+
     height: '100%',
     width: '100%',
-  },
-
-  chatText: {
-    fontSize: 32,
-    fontWeight: '600',
-
   },
 });
