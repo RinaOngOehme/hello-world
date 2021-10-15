@@ -14,15 +14,6 @@ require('firebase/firestore');
 export default class Chat extends React.Component {
   constructor() {
     super();
-    this.state = {
-      messages: [],
-      user: {
-        _id: '',
-        name: '',
-      },
-      uid: 0,
-
-    }
 
     // firebase config details
     const firebaseConfig = {
@@ -31,8 +22,7 @@ export default class Chat extends React.Component {
       projectId: "helloworld-chat-app",
       storageBucket: "helloworld-chat-app.appspot.com",
       messagingSenderId: "672290888263",
-    };
-
+    }
 
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
@@ -42,8 +32,15 @@ export default class Chat extends React.Component {
     this.referenceChatMessages = firebase.firestore().collection('messages');
     this.referenceMessageUser = null;
 
-
-  };
+    this.state = {
+      uid: 0,
+      messages: [],
+      user: {
+        _id: '',
+        name: '',
+      },
+    };
+  }
 
 
 
@@ -76,13 +73,6 @@ export default class Chat extends React.Component {
     });
   }
 
-  componentWillUnmount() {
-    //stop listening to authentication
-    this.authUnsubscribe();
-    //stop listening to snapshot of collection
-    this.unsubscribe();
-  }
-
   // Add new messages when database is updated
   addMessages() {
     const message = this.state.messages[0];
@@ -98,18 +88,22 @@ export default class Chat extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    //stop listening to authentication
+    this.authUnsubscribe();
+    //stop listening to snapshot of collection
+    this.unsubscribe();
+  }
+
   //function to send messages
   onSend(messages = []) {
-    this.setState(previousState => ({
+    this.setState((previousState) => ({
       messages: GiftedChat.append(previousState.messages, messages),
     }),
-      () => {
-        //add and save messages
-        this.addMessages();
-        this.saveMessages();
-      }
+      () => { this.addMessages(); }
     )
   }
+
 
   //retrieve current data in the messages collection
   onCollectionUpdate = (querySnapshot) => {
@@ -153,7 +147,7 @@ export default class Chat extends React.Component {
 
   render() {
 
-    //Bring params of name and selected backgroundcolor from home start screen
+    //Bring selected backgroundcolor from home start screen
     let { name } = this.props.route.params;
     let backColor = this.props.route.params.backColor;
     this.props.navigation.setOptions({ title: name });
