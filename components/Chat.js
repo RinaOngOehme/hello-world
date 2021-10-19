@@ -9,7 +9,7 @@ const firebase = require('firebase');
 require('firebase/firestore');
 
 //import Async Storage
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //import NetInfo
 import NetInfo from '@react-native-community/netinfo';
@@ -60,7 +60,7 @@ export default class Chat extends React.Component {
   async getMessages() {
     let messages = '';
     try {
-      messages = await AsyncStorage.getItem('messages') || [];
+      messages = (await AsyncStorage.getItem('messages')) || [];
       this.setState({
         messages: JSON.parse(messages)
       });
