@@ -3,6 +3,7 @@ import { View, StyleSheet, Platform, KeyboardAvoidingView } from 'react-native';
 
 import { GiftedChat, Bubble } from 'react-native-gifted-chat'
 
+
 //import firebase
 const firebase = require('firebase');
 require('firebase/firestore');
@@ -35,6 +36,7 @@ export default class Chat extends React.Component {
     this.referenceMessageUser = null;
 
     this.state = {
+      isConnected: false,
       uid: 0,
       messages: [],
       user: {
