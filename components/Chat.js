@@ -90,35 +90,40 @@ export default class Chat extends React.Component {
       if (connection.isConnected) {
         this.setState({ isConnected: true });
         console.log('online');
+
+
+
+        //authenticate users anonymously using firebase
+        this.authUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
+          if (!user) {
+            firebase.auth().signInAnonymously();
+          }
+          this.setState({
+            uid: user.uid,
+            messages: [],
+            user: {
+              _id: user.uid,
+              name: name,
+            }
+          });
+
+          // Create reference to the active users messages
+          this.referenceMessagesUser = firebase.firestore().collection('messages').where('uid', '==', this.state.uid);
+
+          //create updated snapshot of collection
+          this.unsubscribe = this.referenceChatMessages
+            .orderBy("createdAt", "desc")
+            .onSnapshot(this.onCollectionUpdate);
+        });
       } else {
         console.log('offline');
+        this.setState({ isConnected: false })
+        // Calls messeages from offline storage
+        this.getMessages();
       }
-    });
-
-
-    //authenticate users anonymously using firebase
-    this.authUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
-      if (!user) {
-        firebase.auth().signInAnonymously();
-      }
-      this.setState({
-        uid: user.uid,
-        messages: [],
-        user: {
-          _id: user.uid,
-          name: name,
-        }
-      });
-
-      // Create reference to the active users messages
-      this.referenceMessagesUser = firebase.firestore().collection('messages').where('uid', '==', this.state.uid);
-
-      //create updated snapshot of collection
-      this.unsubscribe = this.referenceChatMessages
-        .orderBy("createdAt", "desc")
-        .onSnapshot(this.onCollectionUpdate);
     });
   }
+
 
   // Add new messages when database is updated
   addMessages() {
@@ -180,11 +185,7 @@ export default class Chat extends React.Component {
   renderInputToolbar(props) {
     if (this.state.isConnected === false) {
     } else {
-      return (
-        <InputToolbar
-          {...props}
-        />
-      );
+      return (<InputToolbar {...props} />);
     }
   }
 
@@ -219,6 +220,7 @@ export default class Chat extends React.Component {
         <GiftedChat
           renderBubble={this.renderBubble.bind(this)}
           messages={this.state.messages}
+          renderInputToolbar={this.renderInputToolbar.bind(this)}
           onSend={(messages) => this.onSend(messages)}
           user={this.state.user}
         />
