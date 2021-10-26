@@ -10,15 +10,15 @@ To build a chat app for mobile devices using React Native. The app will provide 
 - Data gets stored online and offline
 
 #### Dependencies: ####
-React Native
-Expo
-Expo Image Picker
-Expo location
-Gifted Chat
-Google Firebase
-Firebase Cloud Storage
-JavaScript
-Proptypes
+- React Native
+- Expo
+- Expo Image Picker
+- Expo location
+- Gifted Chat
+- Google Firebase
+- Firebase Cloud Storage
+- JavaScript
+- Proptypes
 
 
 #### START APPLICATION USING: ####
