@@ -3,6 +3,11 @@ import { View, StyleSheet, Platform, KeyboardAvoidingView } from 'react-native';
 
 import { GiftedChat, Bubble, InputToolbar } from 'react-native-gifted-chat'
 
+//custom Chat Features (sharing images and location)
+import CustomActions from './CustomActions';
+
+//import map view
+import MapView from "react-native-maps";
 
 //import firebase
 const firebase = require('firebase');
@@ -18,7 +23,7 @@ export default class Chat extends React.Component {
   constructor() {
     super();
 
-    // firebase config details
+    //firebase config details
     const firebaseConfig = {
       apiKey: "AIzaSyB4XRkgBRCvGAdqudTaOc494fL2xoDsnao",
       authDomain: "helloworld-chat-app.firebaseapp.com",
@@ -37,6 +42,8 @@ export default class Chat extends React.Component {
 
     this.state = {
       isConnected: false,
+      image: null,
+      location: null,
       uid: 0,
       messages: [],
       user: {
@@ -46,7 +53,7 @@ export default class Chat extends React.Component {
     };
   }
 
-  // Save Messages to local storage
+  //save Messages to local storage
   async saveMessages() {
     try {
       await AsyncStorage.setItem('messages', JSON.stringify(this.state.messages));
@@ -56,7 +63,7 @@ export default class Chat extends React.Component {
   }
 
 
-  //Loads messages from AsyncStorage
+  //loads messages from AsyncStorage
   async getMessages() {
     let messages = '';
     try {
@@ -69,7 +76,7 @@ export default class Chat extends React.Component {
     }
   }
 
-  //Delete messages from AsyncStorage
+  //delete messages from AsyncStorage
   async deleteMessages() {
     try {
       await AsyncStorage.removeItem('messages');
@@ -135,7 +142,8 @@ export default class Chat extends React.Component {
       createdAt: message.createdAt,
       text: message.text || null,
       user: message.user,
-
+      image: message.image || null,
+      location: message.location || null,
 
     });
   }
@@ -173,7 +181,8 @@ export default class Chat extends React.Component {
           _id: data.user._id,
           name: data.user.name,
         },
-
+        image: data.image || null,
+        location: data.location || null,
       });
       this.setState({
         messages,
@@ -181,7 +190,7 @@ export default class Chat extends React.Component {
     });
   }
 
-  //If offline, dont render the input toolbar
+  //if offline, dont render the input toolbar
   renderInputToolbar(props) {
     if (this.state.isConnected === false) {
     } else {
@@ -189,7 +198,7 @@ export default class Chat extends React.Component {
     }
   }
 
-  // set bubble color for message
+  //set bubble color for message
   renderBubble(props) {
     return (
       <Bubble
@@ -203,6 +212,29 @@ export default class Chat extends React.Component {
     )
   }
 
+  //create the circle button for more action options
+  renderCustomActions = (props) => {
+    return <CustomActions {...props} />;
+  };
+
+  //renders Map view
+  renderCustomView(props) {
+    const { currentMessage } = props;
+    if (currentMessage.location) {
+      return (
+        <MapView
+          style={{ width: 150, height: 100, borderRadius: 13, margin: 3 }}
+          region={{
+            latitude: currentMessage.location.latitude,
+            longitude: currentMessage.location.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        />
+      );
+    }
+    return null;
+  }
 
 
   render() {
@@ -223,6 +255,8 @@ export default class Chat extends React.Component {
           renderInputToolbar={this.renderInputToolbar.bind(this)}
           onSend={(messages) => this.onSend(messages)}
           user={this.state.user}
+          renderActions={this.renderCustomActions}
+          renderCustomView={this.renderCustomView}
         />
         {Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null}
       </View>
@@ -233,9 +267,6 @@ export default class Chat extends React.Component {
 const styles = StyleSheet.create({
   chatContainer: {
     flex: 1,
-    justifyContent: 'center',
-
-    height: '100%',
-    width: '100%',
+    flexDirection: "column",
   },
 });
