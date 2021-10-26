@@ -1,37 +1,66 @@
 ### Hello World Chat App ###
 
 #### Project Objectives: ####
-To build a Chat App using React Native, Expo and Google Firestore Database so as to demonstrate the knowledge of JavaScript mobile development.
+To build a chat app for mobile devices using React Native. The app will provide users with a chat interface and options to share images and their location.
 
-##### FEATURE: ENTER A CHAT ROOM EASILY #####
--	As a new user, I want to be able to easily enter a chat room so I can quickly start talking to my friends and family.
+#### Key Features:####
+- A page where users can enter their name and choose a background color for the chat screen before joining the chat.
+- A page displaying the conversation, as well as an input field and submit button.
+- The chat must provide users with two additional communication features: sending images and location data.
+- Data gets stored online and offline
 
-##### FEATURE: ABLE TO SEND MESSAGES #####
--	As a user, I want to be able to send messages to my friends and family members to exchange the latest news.
-
-##### FEATURE: ABLE TO SEND IMAGES #####
--	As a user, I want to send images to my friends to show them what I’m currently doing.
-
-##### FEATURE: ABLE TO SHARE LOCATION #####
--	As a user, I want to share my location with my friends to show them where I am.
-
-##### FEATURE: ABLE TO READ MESSAGES WHEN OFFLINE #####
--	As a user, I want to be able to read my messages offline so I can reread conversations at anytime.
-
-##### FEATURE: ABLE TO USE CHAT APP FOR VISUALLY IMPAIRED #####
--	As a user with a visual impairment, I want to use a chat app that is compatible with a screen reader so that I can engage with a chat interface
+#### Dependencies:####
+React Native
+Expo
+Expo Image Picker
+Expo location
+Gifted Chat
+Google Firebase
+Firebase Cloud Storage
+JavaScript
+Proptypes
 
 
-#### BUILT WITH: ####
--	React Native
--	Expo
--	Google Firestone Databse
+#### START APPLICATION USING: ####
+##### REQUIREMENTS #####
+- Node.js
+- Expo Command Line Interface
 
-#### STARTED APPLICATION USING: ####
--	Expo
+npm install --global expo-cli
+
+##### Initial Setup #####
+Clone the repo or download the files, and install dependencies
+
+npm install
+
+##### Expo Set Up on Mobile Device #####
+
+As you will need the Expo app for your phone to run your project on, search for the Expo app in the relevant app store for your device (iOS or Android). Once you have found it, download it onto your mobile device. The app icon should look something like this:
+![expo png](assets/expo_icon.png)
+
+##### Set Up on Emulator(Android) or Simulator(iOS) #####
+To set up the iOS simulator, you need XCode on your Mac. It’s available to download from the <a href="https://itunes.apple.com/app/xcode/"> App Store.</a>
+To set up the Android, you need to set up <a href="https://developer.android.com/studio">Android Studio</a>
+
+##### Run the App #####
+Go to the project folder in your command line and run the app by using:
+expo start
+
+##### Run App Using Emulator (Android) or Simulator(iOS) #####
+In the browser after run expo start, select "Run on iOS Simulator" or "Run on Android device/emulator". Ensure that your Emulator or Simulator is already up and running, otherwise you might encounter issues when you select "Run on iOS Simulator" or "Run on Android device/emulator" in the browser.
+
+#### Firebase Database Set Up #####
+For database to store collections and documents, you will need to setup your own <a href="https://firebase.google.com/">firebase database</a> and add your own database credentials under the "Firebase Config Details", then allow anonymous authorization with your Database.
+
+##### Screenshots of Features #####
+![homepage png](assets/homepage.png)
+![chatmessage png](assets/chatmessage.png)
+![action options png](assets/action_options.png)
+![permission request pics png](assets/permission_requestpics.png)
+![permission request location png](assets/permission_requestlocation.png)
 
 #### Author: ####
 :camel: Rina Ong-Oehme
 
 #### Acknowledgements: ####
-Matthew Wacha and Treasure Kabareebe
+Treasure Kabareebe
