@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions'
-import * as Location from 'expo-location'
+import * as Permissions from 'expo-permissions';
+import * as Location from 'expo-location';
 const firebase = require('firebase');
 require('firebase/firestore');
 
@@ -30,19 +30,15 @@ export default class CustomActions extends React.Component {
           case 2:
             console.log('user wants to get their location');
             return this.getLocation();
+
         }
       },
     );
   };
 
-  state = {
-    image: null,
-    location: null
-  }
-
   //get permission from user to pick image from photo library
   pickImage = async () => {
-    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    const { status } = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
     try {
       if (status === 'granted') {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -62,7 +58,10 @@ export default class CustomActions extends React.Component {
 
   //get permission from user to take photo with the camera
   takePhoto = async () => {
-    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    const { status } = await Permissions.askAsync(
+      Permissions.CAMERA,
+
+    );
     try {
       if (status === 'granted') {
         let result = await ImagePicker.launchCameraAsync().catch(error => console.log(error));
@@ -79,8 +78,9 @@ export default class CustomActions extends React.Component {
 
   //get permission from user to share location
   getLocation = async () => {
+    const { status } = await Location.requestForegroundPermissionsAsync();
     try {
-      const { status } = await Location.requestForegroundPermissionsAsync();
+
       if (status === 'granted') {
         let result = await Location.getCurrentPositionAsync({}).catch(error => console.log(error));
 
@@ -113,7 +113,7 @@ export default class CustomActions extends React.Component {
       };
       xhr.responseType = "blob";
       xhr.open("GET", uri, true);
-      xhr.send();
+      xhr.send(null);
     });
     const imageNameBefore = uri.split("/");
     const imageName = imageNameBefore[imageNameBefore.length - 1];
