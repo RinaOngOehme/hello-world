@@ -2,8 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
+//import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
+
+
 const firebase = require('firebase');
 require('firebase/firestore');
 
@@ -30,6 +32,8 @@ export default class CustomActions extends React.Component {
           case 2:
             console.log('user wants to get their location');
             return this.getLocation();
+          default:
+
 
         }
       },
@@ -38,7 +42,7 @@ export default class CustomActions extends React.Component {
 
   //get permission from user to pick image from photo library
   pickImage = async () => {
-    const { status } = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     try {
       if (status === 'granted') {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -58,10 +62,7 @@ export default class CustomActions extends React.Component {
 
   //get permission from user to take photo with the camera
   takePhoto = async () => {
-    const { status } = await Permissions.askAsync(
-      Permissions.CAMERA,
-
-    );
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
     try {
       if (status === 'granted') {
         let result = await ImagePicker.launchCameraAsync().catch(error => console.log(error));
@@ -78,15 +79,20 @@ export default class CustomActions extends React.Component {
 
   //get permission from user to share location
   getLocation = async () => {
-    const { status } = await Location.requestForegroundPermissionsAsync();
+
     try {
-
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      // const { status } = await Permissions.askAsync(Permissions.LOCATION);
       if (status === 'granted') {
-        let result = await Location.getCurrentPositionAsync({}).catch(error => console.log(error));
+        const result = await Location.getCurrentPositionAsync({}).catch(error => console.log(error));
 
-        const longitude = result.coords.longitude;
-        const latitude = result.coords.latitude;
+        //const longitude = result.coords.longitude;
+        //const latitude = result.coords.latitude;
+        const longitude = JSON.stringify(result.coords.longitude);
+        const latitude = JSON.stringify(result.coords.latitude);
         if (result) {
+          //  this.setState({
+          //   location: result
           this.props.onSend({
             location: {
               longitude: longitude,
@@ -95,6 +101,7 @@ export default class CustomActions extends React.Component {
           });
         }
       }
+
     } catch (error) {
       console.log(error.message);
     }
