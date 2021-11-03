@@ -82,10 +82,11 @@ export default class CustomActions extends React.Component {
 
     try {
       const { status } = await Location.requestForegroundPermissionsAsync();
+      console.log(status)
       // const { status } = await Permissions.askAsync(Permissions.LOCATION);
       if (status === 'granted') {
         const result = await Location.getCurrentPositionAsync({}).catch(error => console.log(error));
-
+        console.log(result)
         //const longitude = result.coords.longitude;
         //const latitude = result.coords.latitude;
         const longitude = JSON.stringify(result.coords.longitude);
@@ -95,8 +96,8 @@ export default class CustomActions extends React.Component {
           //   location: result
           this.props.onSend({
             location: {
-              longitude: longitude,
-              latitude: latitude,
+              longitude: result.coords.longitude,
+              latitude: result.coords.latitude,
             },
           });
         }
