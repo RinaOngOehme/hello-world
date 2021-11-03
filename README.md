@@ -54,7 +54,7 @@ For database to store collections and documents, you will need to setup your own
 
 ##### Screenshots of Features #####
 ![homepage png](assets/homepage.png)
-![chatmessage png](assets/chatmsg.png)
+![chatmessage png](assets/chatmsg.jpg)
 
 #### Author: ####
 :camel: Rina Ong-Oehme
