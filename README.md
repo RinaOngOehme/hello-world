@@ -52,7 +52,7 @@ In the browser after run expo start, select "Run on iOS Simulator" or "Run on An
 #### Firebase Database Set Up #####
 For database to store collections and documents, you will need to setup your own <a href="https://firebase.google.com/">firebase database</a> and add your own database credentials under the "Firebase Config Details", then allow anonymous authorization with your Database.
 
-##### Screenshots of Features #####
+##### Screenshot of Features #####
 ###### Send a chat, take a photo and share location ######
 ![chatmessage png](assets/chatmsg.jpg)
 
